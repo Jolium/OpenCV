@@ -27,7 +27,6 @@ def stackImages(scale, imgArray):
 
         imageBlank = np.zeros((height, width, 3), np.uint8)
         hor = [imageBlank]*rows
-        hor_con = [imageBlank]*rows
 
         for x in range(0, rows):
             hor[x] = np.hstack(imgArray[x])
@@ -45,3 +44,12 @@ def stackImages(scale, imgArray):
         ver = hor
 
     return ver
+
+
+if __name__ == "__main__":
+    img = cv2.imread('Resources/lena.jpg')
+    imgArray = ([img, img, img],
+                [img, img, img])
+    images = stackImages(scale=0.8, imgArray=imgArray)
+    cv2.imshow("Stacked Images", images)
+    cv2.waitKey(0)
